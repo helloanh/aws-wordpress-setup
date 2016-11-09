@@ -1,6 +1,6 @@
 # Building a Fault Tolerant Wordpress Site: Part 1, Set Up Environment  
 
-![network diagram](https://s22.postimg.org/5ajsscc01/Screen_Shot_2016_11_08_at_7_32_36_PM.png)  
+<img src="https://s22.postimg.org/5ajsscc01/Screen_Shot_2016_11_08_at_7_32_36_PM.png" style="height: 300px; width: 175px;"> 
 
 
 ## I. Create S3 Role in IAM  
@@ -37,5 +37,11 @@ Bucket 2: for the wordpress media files
 
 ## IV. Create RDS Instance  
 
+1. Go to RDS in AWS Console  
+2. Select MySQL Community Edition  
+3. Select the appropriate DB Instance Class  
+4. Select Multi A-Z Deployment (not eligible for free-tier)  
+5. Fill in the DB Instance Identifier, Master Username, and Master Password  
+6. 
 
 

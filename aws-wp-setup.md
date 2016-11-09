@@ -42,6 +42,64 @@ Bucket 2: for the wordpress media files
 3. Select the appropriate DB Instance Class  
 4. Select Multi A-Z Deployment (not eligible for free-tier)  
 5. Fill in the DB Instance Identifier, Master Username, and Master Password  
-6. 
+6. Make sure under the *Network and Security* section has *Publicly Accessible* to **No**.   
+7. For *VPC Security Group(s)*, select the rds secruity grou pyou created in Step 2.    
+8. Name the database and launch.  
+
+## V. Set Up Load Balancer in EC2  
+
+1. Name load balancer something like mywordpressLB.  
+2. Go to the next page and assign the web-dmz security group you created earlier in Step 2.  
+3. Configure heatlh check.  Just name the *Ping Path* file to healthy.html  
+4. Lower the health check interval to 10 seconds, healthy threshold to 3.  So now the instance will come into service within 30 seconds.  
+8. Name the database and launch.  
+
+## V. Set Up Load Balancer in EC2  
+
+1. Name load balancer something like mywordpressLB.  
+2. Go to the next page and assign the web-dmz security group you created earlier in Step 2.  
+3. Configure heatlh check.  Just name the *Ping Path* file to healthy.html  
+4. Lower the health check interval to 10 seconds, healthy threshold to 3.  So now the instance will come into service within 30 seconds.  
+8. Name the database and launch.  
+
+## V. Set Up Load Balancer in EC2  
+
+1. Name load balancer something like mywordpressLB.  
+2. Go to the next page and assign the web-dmz security group you created earlier in Step 2.  
+3. Configure heatlh check.  Just name the *Ping Path* file to healthy.html  
+4. Lower the health check interval to 10 seconds, healthy threshold to 3.  So now the instance will come into service within 30 seconds.  
+8. Name the database and launch.  
+
+## V. Set Up Load Balancer in EC2  
+
+1. Name load balancer something like mywordpressLB.  
+2. Go to the next page and assign the web-dmz security group you created earlier in Step 2.  
+3. Configure heatlh check.  Just name the *Ping Path* file to healthy.html  
+4. Lower the health check interval to 10 seconds, healthy threshold to 3.  So now the instance will come into service within 30 seconds.  
+8. Name the database and launch.  
+
+## V. Set Up Load Balancer in EC2  
+
+1. Name load balancer something like mywordpressLB.  
+2. Go to the next page and assign the web-dmz security group you created earlier in Step 2.  
+3. Configure heatlh check.  Just name the *Ping Path* file to healthy.html  
+4. Lower the health check interval to 10 seconds, healthy threshold to 3.  So now the instance will come into service within 30 seconds.  
+8. Name the database and launch.  
+
+## V. Set Up Load Balancer in EC2  
+
+1. Name load balancer something like mywordpressLB.  
+2. Go to the next page and assign the web-dmz security group you created earlier in Step 2.  
+3. Configure heatlh check.  Just name the *Ping Path* file to healthy.html  
+4. Lower the health check interval to 10 seconds, healthy threshold to 3.  So now the instance will come into service within 30 seconds.  
+5. Hit create.  
+
+## VI. Set Up DNS in Route53  
+
+1. Create Record Set  
+2. Set *Alias* to *Yes*  
+3. Set *Alis Target* to the load balancer you made in the step 5.    
+4. Leave everything else as standard and hit create.  
+
 
 

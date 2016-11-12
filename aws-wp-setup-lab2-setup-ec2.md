@@ -49,6 +49,79 @@
 4. Update this url to the **Database Host** field.  
 5. The screen will say it cannot write in the wp-config.php file, but still give you the script.  Copy and paste this script and update it in the terminal for the wp-config.php file.  
 
+## V. Set up S3 Bucket with EC2 WordPress Instance  
+1. See all you buckets: aws s3 ls  
+2. Copy all WordPress Core code to S3 bucket:  
+        aws s3 cp --recursive /var/www/html s3:yourbucketnamehere  
+3. Check to see if all your WP files are in the S3 bucket:  
+        aws s3 ls yourbucketnamehere  
+4. Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+ Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+ Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+ Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+ Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+ Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+ Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+ Do something dangerous -- delete all your WP Core files in html/  
+        cd ..  
+        rm -rf html/  
+5. Go to the browser and see the white screen of death when refresh the page  
+        you just simulate a failure of your EC2  
+6. Just recover by downloading the same bucket again:  
+        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
+7. Go back to the browser and refresh the screen, and the site should be up again.  
+8. Last thing, change permission and user since you just download the files in the html again:  
+        chmod -R 755 wp-content  
+        chown -R apache.apache wp-content  
+
+## RECAP  
+        +  Set up EC2 instance with S3 permissions  
+        +  Install WordPress with RDS database  
+        +  Upload the code to S3  
+        +  Simulate a failure from the server and fix it by downloading the same code from S3 bucket  
+
 
 
 

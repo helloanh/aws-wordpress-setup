@@ -10,7 +10,6 @@
 6. After instance is running and become available, ssh into the instance from the terminal.  
 7. Upgrade to root privilege with "sudo su" command.   
 8. Run "yum update"    
-9.
 
 ## II. LAMP Stack Set Up  
 
@@ -26,7 +25,7 @@
                     find the line with <Directory "var/www/html"> and find AllowOverride All  
                     set **AllowOverride None** to **AllowOverride All**  
 
-#### The following steps 3-5 are necessary if you didnt run the bashscript on the instance before launch  
+### The following steps 3-5 are necessary if you didnt run the bashscript on the instance before launch  
 
 3. Go to /var/www/html  
 4. Create a healthy.html file:  
@@ -56,55 +55,6 @@
 3. Check to see if all your WP files are in the S3 bucket:  
         aws s3 ls yourbucketnamehere  
 4. Do something dangerous -- delete all your WP Core files in html/  
-        cd ..  
-        rm -rf html/  
-5. Go to the browser and see the white screen of death when refresh the page  
-        you just simulate a failure of your EC2  
-6. Just recover by downloading the same bucket again:  
-        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
- Do something dangerous -- delete all your WP Core files in html/  
-        cd ..  
-        rm -rf html/  
-5. Go to the browser and see the white screen of death when refresh the page  
-        you just simulate a failure of your EC2  
-6. Just recover by downloading the same bucket again:  
-        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
- Do something dangerous -- delete all your WP Core files in html/  
-        cd ..  
-        rm -rf html/  
-5. Go to the browser and see the white screen of death when refresh the page  
-        you just simulate a failure of your EC2  
-6. Just recover by downloading the same bucket again:  
-        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
- Do something dangerous -- delete all your WP Core files in html/  
-        cd ..  
-        rm -rf html/  
-5. Go to the browser and see the white screen of death when refresh the page  
-        you just simulate a failure of your EC2  
-6. Just recover by downloading the same bucket again:  
-        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
- Do something dangerous -- delete all your WP Core files in html/  
-        cd ..  
-        rm -rf html/  
-5. Go to the browser and see the white screen of death when refresh the page  
-        you just simulate a failure of your EC2  
-6. Just recover by downloading the same bucket again:  
-        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
- Do something dangerous -- delete all your WP Core files in html/  
-        cd ..  
-        rm -rf html/  
-5. Go to the browser and see the white screen of death when refresh the page  
-        you just simulate a failure of your EC2  
-6. Just recover by downloading the same bucket again:  
-        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
- Do something dangerous -- delete all your WP Core files in html/  
-        cd ..  
-        rm -rf html/  
-5. Go to the browser and see the white screen of death when refresh the page  
-        you just simulate a failure of your EC2  
-6. Just recover by downloading the same bucket again:  
-        aws s3 cp --recursive s3://yourbucketnamehere /var/www/html/  
- Do something dangerous -- delete all your WP Core files in html/  
         cd ..  
         rm -rf html/  
 5. Go to the browser and see the white screen of death when refresh the page  

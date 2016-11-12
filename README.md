@@ -2,7 +2,9 @@
 
 ## CONTENTS 
 
-Lab1: Building a Fault Tolerant Wordpress Site: Part 1, Set Up Environment   
-Lab2: Building a Fault Tolerant Wordpress Site, Set Up EC2 Instance  
+Lab1: Part 1, Set Up Environment:  
+    IAM Role, Security Groups, S3 Buckets, CDN, RDS Instances 
+Lab2: Part 2  Set Up EC2 Instance  
+Lab3: Part 3, Automation and Setting Up Our AMI  
 
 

@@ -66,6 +66,11 @@
         chmod -R 755 wp-content  
         chown -R apache.apache wp-content  
 
+
+### COMMON ISSUES 
+Error Establishing Database Connection - make sure your rds security group has the correct inbound rule.  You can add your IP address and also the Web-DMZ for inbound rule.  
+
+
 ## RECAP  
         +  Set up EC2 instance with S3 permissions  
         +  Install WordPress with RDS database  

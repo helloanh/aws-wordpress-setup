@@ -12,16 +12,22 @@
 8. Run "yum update"    
 9.
 
-## LAMP Stack Set Up  
+## 2. LAMP Stack Set Up  
 
 1. Run "yum install httpd php php-mysql stress"  
 2. Configure Apache to use URL rewrite:  
         - cd /etc/httpd/conf  
         - cp httpd.conf httpd.conf.bak  
-        - vim httpd.conf:  
+        - make a backup of the httpd config file:    
+                cp httpd.conf httpdconfbackup.conf  
+                vim httpd.conf:  
+                    scroll down, look for line to allow url rewrite    
+                    this allows large img files to be distributed using Cloudfront and not from our instance  
+                    find the line with <Directory "var/www/html"> and find AllowOverride All  
+                    set **AllowOverride None** to **AllowOverride All**  
 
-    
 
 
 
 
+            

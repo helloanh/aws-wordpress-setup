@@ -51,7 +51,7 @@
 ## V. Set up S3 Bucket with EC2 WordPress Instance  
 1. See all you buckets: aws s3 ls  
 2. Copy all WordPress Core code to S3 bucket:  
-        aws s3 cp --recursive /var/www/html s3:yourbucketnamehere  
+        aws s3 cp --recursive /var/www/html s3://yourbucketnamehere  
 3. Check to see if all your WP files are in the S3 bucket:  
         aws s3 ls yourbucketnamehere  
 4. Do something dangerous -- delete all your WP Core files in html/  
@@ -70,6 +70,9 @@
 ### COMMON ISSUES 
 Error Establishing Database Connection - make sure your rds security group has the correct inbound rule.  You can add your IP address and also the Web-DMZ for inbound rule.  
 
+WordPress asking for FTP info when trying to download plugins:  
+    > just change ownership of the folder
+        chown -R apache:apache /var/www/html
 
 ## RECAP  
         +  Set up EC2 instance with S3 permissions  

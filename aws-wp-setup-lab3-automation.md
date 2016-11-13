@@ -19,7 +19,7 @@ The commands list the buckets, the copy contents from the uploads folder from EC
 
 ### Force WordPress to Use CloudFront by Rewriting the URL in the .htaccess  
 
-1. Go to /var/www/  
+1. Go to /var/www/html/ 
 2. Make a .htaccess or download it here:  
         *  wget https://s3-eu-west-1.amazonaws.com/acloudguru/config/htaccess  
         *  make sure rename htaccess to .htaccess  
@@ -29,9 +29,12 @@ The commands list the buckets, the copy contents from the uploads folder from EC
 5. Restart httpd service:  
         *  service httpd restart  
 
+
 What should happen now is the image in the EC2 WordPress is served front CloudFront.  You can check by checking the WordPress image by clicking on the source of the image on a post.  
 
-The next step to how to automate this whole sync process.  
+**NOTE:** If your cloudfront distribution is not working, try putting the line with rewriterule after the #END WordPress, save the .htaccess, and restart httpd server again  
+
+**The next step to how to automate this whole sync process.**   
 
 ## II. Automating Files to Serve from CloudFront  
 
@@ -70,4 +73,7 @@ HOME=/
 
 */3 * * * * root aws s3 sync --delete s3://yourbucketnamecodehere/ /var/www/html/
 ```  
+
+** Now we have set up everything and can make an AMI of this instance to use it for autoscaling for future instances **  
+
 

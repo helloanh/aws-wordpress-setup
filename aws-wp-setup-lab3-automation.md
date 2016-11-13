@@ -32,7 +32,9 @@ The commands list the buckets, the copy contents from the uploads folder from EC
 
 What should happen now is the image in the EC2 WordPress is served front CloudFront.  You can check by checking the WordPress image by clicking on the source of the image on a post.  
 
-**NOTE:** If your cloudfront distribution is not working, try putting the line with rewriterule after the #END WordPress, save the .htaccess, and restart httpd server again  
+**NOTE:** If your cloudfront distribution is not working, try putting the line with rewriterule after the #END WordPress, save the .htaccess, and restart httpd server again.    
+
+Also try to access /etc/httpd/conf/httpd.conf and make sure "AllowOverride All" setting is on under the section on "DocumentRoot /var/www/html"  
 
 **The next step to how to automate this whole sync process.**   
 

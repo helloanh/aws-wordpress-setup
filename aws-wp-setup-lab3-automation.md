@@ -25,9 +25,12 @@ The commands list the buckets, the copy contents from the uploads folder from EC
         +  make sure rename htaccess to .htaccess  
 *There is also a copy in this repo*  
 3. Look into the .htaccess file and see that the rewriteryle line is using the endpoint of the CloudFront Domain name.  So go to your AWS Dashboard, find CloudFront, and copy your own CloudFront Domain name.  
+4. Replace the default domain name in the sample .htaccess with your own CloudFront Domain Name.  
+5. Restart httpd service:  
+        +  service httpd restart  
 
-4.
+What should happen now is the image in the EC2 WordPress is served front CloudFront.  You can check by checking the WordPress image by clicking on the source of the image on a post.  
 
+The next step to how to automate this whole sync process.  
 
-
-
+## II. Automating 

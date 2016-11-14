@@ -1,4 +1,4 @@
-# Tutorial on Setting Up a Fault Tolerant WordPress Website and Server on AWS  
+#Setting Up a Fault Tolerant WordPress Website and Server on AWS  
 
 ## TABLE OF CONTENTS 
 

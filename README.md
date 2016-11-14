@@ -1,5 +1,7 @@
 #Setting Up a Fault Tolerant WordPress Website and Server on AWS  
 
+<img src="https://s22.postimg.org/5ajsscc01/Screen_Shot_2016_11_08_at_7_3    2_36_PM.png" style="height: 300px; width: 175px;">
+
 ## TABLE OF CONTENTS 
 
 ### Lab1: Set Up Environment 
@@ -28,6 +30,15 @@
 
 ### Lab4: Autoscaling and Load Testing  
 
+        1. Create Autoscaling group  
+        2. Set Load Balancer options  
+        3. Configure scaling policy  
+        4. [Optional] Email notification set up  
+        5. Configure and launch.  
+        6. Failover simulation test.  
+
+
         
+
 
 

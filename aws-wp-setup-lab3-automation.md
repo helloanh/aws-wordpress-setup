@@ -76,6 +76,22 @@ HOME=/
 */3 * * * * root aws s3 sync --delete s3://yourbucketnamecodehere/ /var/www/html/
 ```  
 
-** Now we have set up everything and can make an AMI of this instance to use it for autoscaling for future instances **  
+**Now we have set up everything and can make an AMI of this instance to use it for autoscaling for future instances**  
 
+## II. Create an AMI  
+
+1. Go to your EC2 Console, select our EC2, go to action and click on "Create Image"  
+2. For the "No Reboot" option.  If you check this box, it won't reboot your EC2 instance in the image creation process.  This can cause issue with data consistency.  Recommended practice to leave this option unchecked.  
+3. When the AMI is available, launch the AMI, set the IAM role as S3, and run this bootstrap:  
+
+```sh
+#!/bin/bash
+yum update -y
+aws s3 sync --delete s3://yourwordpresscodedirectoryhere/ /var/www/html/  
+
+``` 
+4. Put the security group as Web-DMZ and launch this.  
+5. When instance come live, grab the public IP address and go to the browser to see the set up is still there (including CloudFront server).  
+
+### NEXT STEPS: CREATE AUTOSCALING AND CONFIGURATION GROUP ...  
 

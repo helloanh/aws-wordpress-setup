@@ -34,4 +34,15 @@ Cheap to do and not have to rent data centers around the world.
 
 8. You still need to set up user permissions and change the owner of the /var/www/ directory to make basic functions like upload or download plugins work on the dashboard.  Follow this tutorial [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html).  
 
+To allow user *ec2-user* (for Amazon AWS) write access to the public web directory /var/www/html enter the following commands:  
+```sh
+# for Amazon AMI, make sure to sudo su first
+chown -R ec2-user:ec2-user /var/www/html  
+chmod -R 755 /var/www/html  
+
+# for ubuntu
+sudo chown -R ubuntu:ubuntu /var/www/html 
+sudo chmod -R 755 /var/www/html
+```
+
 

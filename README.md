@@ -37,8 +37,6 @@
         5. Configure and launch.  
         6. Failover simulation test.  
 
-
-        
-
-
+### Lab5: CloudFormation  
+### AWS Real Life Example   
 

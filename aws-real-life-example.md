@@ -65,8 +65,8 @@ We are setting the acceptable amount of down time based on the existence of the 
 
 **Origin Domain Name**: goodjobsforallcdn.s3.amazon.aws.com  (or the name of the cdn bucket you created earlier)  
 
-**Origin Path** leave as it 
-**Origin ID** leave as it  
+**Origin Path** leave as it   
+**Origin ID** leave as it    
 **Restrict Bucket Access** Yes, because we want users to force them to use CDN and not S3.  This speeds up the latency.  
 **Origin Access Identity** Select Create A New Identity  
 **Grant Read Permissions on Bucket** Yes, Update Bucket Policy  
@@ -80,6 +80,36 @@ Everything else leave as default and hit create distribution.  Now you can see t
 * I call it something like CCCTemplateWebServer-WordPress.  
 * Configure Security Group as the webdmz (should have SSH, HTTP, HTTPS).  If you look at the rds security group, you should see that the webdmz you have selected is connected to the mysql.  So just click on only the webdmz and launch.  Assign tis to existing PEM key-pair.  
 
-* Copy the Public IP address and ssh into the instance you just created.  
+* Copy the Public IP address and ssh into the instance you just created.  Make sure you RDS is also live.  
+
+* In RDS dashboard if you set **Multi AZ** as No, then you don't manage the connection with the endpoit url.  
+* If **Multi AZ** is Yes, use the endpoint, so if the primary zone is done, AWS will set up the failover to another zone.  
+### 9. Connect EC2 Instance to Load Balancer    
+
+* Go to the load balancer you created, and add the instance.  
+
+[![Screen Shot 2016-11-18 at 4.34.53 PM.png](https://s17.postimg.org/5akribwj3/Screen_Shot_2016_11_18_at_4_34_53_PM.png)](https://postimg.org/image/4l1z5yvzf/)  
+
+* Currently the status is *OutOfService*, when it is up in service then it will start service traffic to your EC2 instance.  
+
+### 10. SSH to Instance to Set Up WordPress Environment  
+
+```sh
+sudo su
+clear
+
+#install apache, php, and php-mysql (just for our instance to communicate to our rds server)  
+
+yum install httpd php php-mysql -y
+yum update -y
+
+# edit settings of httpd.conf file to allow us to do url rewrite
+cd /etc/httpd/conf/
+cp httpd.conf mycopyhttpd.conf
+vim httpd.conf
+```  
+
+```sh
+#file name: httpd.conf
 
 

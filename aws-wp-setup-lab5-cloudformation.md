@@ -14,7 +14,7 @@
 4. Click on template1 tag to view the JSON full code.  Just hit close and go back to the *Create Stack* page.  We are just using the default template, so nothing will change.  
 5. Click *Next* button to go to the next *Specify Details* section.  
 6. Configurations:  
-        + Stackname - just going to call it something like CCC-WP-ASG-CF.
+        + Stackname - just going to call it something like CCC-WP-ASG-CF.  
         + DBClass - db.t2.small   
         + DBName - wordpressdbccc  
         + DBPassword - ???  
@@ -22,5 +22,15 @@
         + KeyName - assign from your existing key  
         + MultiAZDatabase - true  
         + SSHLocation  0.0.0.0/0  
-        + WebServer Capacity 2  
-7.  
+        + WebServer Capacity 2 
+
+
+Now you have the script in a complete new region.  You can use the same script in different regions.  
+
+Cheap to do and not have to rent data centers around the world.  
+
+7.  After 20 mins or so, the status should say **CREATE_COMPLETE**.  Click on the bottom "OutPuts" tab and grab the website URL.  You can go to the Dashboard and set the site up now.  You can also see the instances listed in the EC2 section.  
+
+
+
+

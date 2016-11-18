@@ -45,5 +45,32 @@ We are setting the acceptable amount of down time based on the existence of the 
 
 * Go to Route53 to DNS service.  Go to Hosted Zones, and go to *Create Record Set*  and associate root domain with the ELB.  (You need to purchase a domain name first before this could work.)  
 
- 
+* What you want to edit is the two type A records.  
+
+* What to change **Alias Target** to the name of your load balancer you created for all A records type.  
+
+### 6. Create Two S3 Buckets  
+
+* example: I created goodjobsforallcdn and goodjobsforallwpcode  
+
+* the cdn is to serve media contents in the wp-content/uploads/ folder  (publicly available bucket for the world to view)  
+
+* the wpcode is to serve and save the core wp code (private bucket for the wordpress site)    
+
+### 7. Create CloudFront Distribution  
+
+* Go to CF and click on create distribution.  There are two types, webs and RTMP.  99% of the time you will go for the web.  
+
+* Click on the web distribution.  
+
+**Origin Domain Name**: goodjobsforallcdn.s3.amazon.aws.com  (or the name of the cdn bucket you created earlier)  
+
+**Origin Path** leave as it 
+**Origin ID** leave as it  
+**Restrict Bucket Access** Yes, because we want users to force them to use CDN and not S3.  This speeds up the latency.  
+**Origin Access Identity** Select Create A New Identity  
+**Grant Read Permissions on Bucket** Yes, Update Bucket Policy  
+
+Everything else leave as default and hit create distribution.  Now you can see the distribution is set up (might take some time for the process to be completed).  
+
 

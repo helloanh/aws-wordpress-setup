@@ -1,8 +1,5 @@
 # Building a Fault Tolerant Wordpress Site: Part 1, Set Up Environment  
 
-<img src="https://s22.postimg.org/5ajsscc01/Screen_Shot_2016_11_08_at_7_32_36_PM.png" style="height: 300px; width: 175px;"> 
-
-
 ## I. Create S3 Role in IAM  
 
 1. Go to IAM, create a new role    

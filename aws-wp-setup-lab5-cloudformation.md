@@ -32,5 +32,6 @@ Cheap to do and not have to rent data centers around the world.
 7.  After 20 mins or so, the status should say **CREATE_COMPLETE**.  Click on the bottom "OutPuts" tab and grab the website URL.  You can go to the Dashboard and set the site up now.  You can also see the instances listed in the EC2 section.  
 
 
+8. You still need to set up user permissions and change the owner of the /var/www/ directory to make basic functions like upload or download plugins work on the dashboard.  Follow this tutorial [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html).  
 
 

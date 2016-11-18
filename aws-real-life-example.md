@@ -73,4 +73,13 @@ We are setting the acceptable amount of down time based on the existence of the 
 
 Everything else leave as default and hit create distribution.  Now you can see the distribution is set up (might take some time for the process to be completed).  
 
+### 8. EC2 Instance and WordPress Installation  
+
+* Create a new Amazon AMI Linux instance, set the S3 IAM role.  We are not going to use the Advance Details section to add the bootstrapshell script, but will do it in the terminal later.    
+
+* I call it something like CCCTemplateWebServer-WordPress.  
+* Configure Security Group as the webdmz (should have SSH, HTTP, HTTPS).  If you look at the rds security group, you should see that the webdmz you have selected is connected to the mysql.  So just click on only the webdmz and launch.  Assign tis to existing PEM key-pair.  
+
+* Copy the Public IP address and ssh into the instance you just created.  
+
 

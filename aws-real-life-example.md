@@ -111,5 +111,42 @@ vim httpd.conf
 
 ```sh
 #file name: httpd.conf
+#find section with DocumentRoot "/var/www/html"
+
+...
+<Directory "/var/www/html">
+# look for the line AllowOverride None, and change it to All  
+
+# AllowOverride controls what directives may be placed in .htaccess files.  
+# It can be "All", "None", or any combination of the keywords:  
+#   Iotuis FileInfo AuthConfig Limit 
+
+    AllowOverride None
+
+# Controls who can get stuff from this server.
+# 
+
+...
+
+</Directory>
+
+...
+
+```  
+
+* After you edited the httpd.conf file, you need to start apache:  
+
+```sh
+service httpd start
+# go to html directory
+cd /var/www/html
+# create elb.html file for healthcheck  
+echo "Success. Elastic Load Balancer is healthy." > elb.html 
+clear
+```
+
+* Go to the browser and type in the ipadress/elb.html to see the file  
+
+
 
 

@@ -260,6 +260,10 @@ aws s3 cp s3://acloudguru/htaccess /var/www/html/
 
 * Make sure you have enough memory!  usually t2.micro are not enough for live site migration.  This crashed the site for me on first try (a reboot recovers it).  
 
+* You need to reset the chmod an chown again to apache  
+* You also need to copy the contents fromt html/ up to the s3 bucket again before running the cron job in crontab script  
+
+
 #### Setting Up CloudFront  
 
 ```sh
@@ -267,9 +271,19 @@ aws s3 cp s3://acloudguru/htaccess /var/www/html/
 aws s3 cp /var/www/html/wp-content/uploads s3://yourwordpresscdnbucket --recursive
 
 # copy the code from this file
-aws s3 cp s3://acloudguru/htaccess /var/www/html 
+wget https://s3-eu-west-1.amazonaws.com/acloudguru/config/htaccess
 
-# go to the htaccess and switch the http url to cloudfront  
+# go to the htaccess and switch the http url to cloudfront **Domain Name**    
+```
+
+```htaccess
+Options +FollowSymlinks
+RewriteEngine on
+rewriterule ^wp-content/uploads/(.*)$ http://d2jmrva8tfzxcq.cloudfront.net/$1 [r=301,nc]
+
+# BEGIN WordPress
+
+# END WordPress
 ```
 
 * rename htaccess to .htaccess  
@@ -280,4 +294,63 @@ aws s3 cp s3://acloudguru/htaccess /var/www/html
 mv htaccess .htaccess
 service apache restart
 ```
+
+What should happen now is the image in the EC2 WordPress is served front CloudFront. You can check by checking the WordPress image by clicking on the source of the image on a post.
+
+NOTE: If your cloudfront distribution is not working, try putting the line with rewriterule after the #END WordPress, save the .htaccess, and restart httpd server again.
+
+Also try to access /etc/httpd/conf/httpd.conf and make sure "AllowOverride All" setting is on under the section on "DocumentRoot /var/www/html"  
+
+#### Syncing Upload Folder with Cron Job  
+
+```sh
+#file /etc/crontab
+#add these two lines after the first cron job:  
+
+#put this at the last line --> this sync all the files from EC2 to your bucket and delete the old file in the bucket  
+
+*/2 * * * * root aws s3 sync --delete /var/www/html/ s3://yourbucketnamecodehere/  
+
+*/2 * * * * root aws s3 sync --delete /var/www/htnl/wp-content/uploads s3://yourbucketnamemediahere/    
+
+#download the contents from the S3 code bucket back to EC2 instance.  Why?  
+#bc if you have multiple EC2 instances and make a change on one, you want to make those changes back to your instance.  This is a bit messy, normally you would have a dedicated instance to make changes to.  download back the code to our /var/www/html  
+#for production, have a dedicated EC2 instance so you only need to run the top two lines of code, but if you have a fleet of instances, you would need to run the bottom code for all of them  
+
+*/5  * * * * root aws s3 sync --delete s3://yourbucketnamecodehere/ /var/www/html/
+```
+
+### 12. Create an AMI Image  
+
+* First test the cron job to see if it works  
+* upload a file in your bucket at aws s3 dashboard  
+* wait to see if the cron job is working  
+* Second test an image upload in WP dashboard  
+
+* Now delete html directory, create a snapshot, and turn it into an AMI  
+
+```sh
+service crond stop
+rm -rf html/
+mkdir html/
+clear
+chown -R apache.apache html/
+chmod -R 755 html/
+cd html/
+ls
+# should be empty  
+chkconfig crond on
+chkconfig httpd on
+```
+
+* Go back to your EC2 Console  
+* Click on "Create An Image", call it something like MyWPDbWeb  
+* Notice that you will lose access to your instance  
+* Go to AMI, it should be pending, and wait until it is available  
+* Now it is ready for autoscaling group  
+
+### 13. Autoscaling & Testing  
+
+
+
 

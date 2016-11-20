@@ -234,4 +234,50 @@ echo "hello this is a test" > mytestfile.html
 
 * Wait for two mins, and check the aws s3 bucket to see if the file is synced there  
 
+* If it is not syncing, try taking out the --recursive tag, else add --region tag  
+
+### 12. Configure CloudFront to Serve Media Files from S3 Bucket  
+
+* Go back to the wordpress site, you can see the uploads are still from EC2 instances  
+* First step is to copy the current contents from the uploads folder to our media bucket:  
+
+```sh
+aws s3 cp /var/www/thml/wp-content/uploads s3://yourwordpressmediabuckethere/ --recursive  
+```
+
+* Now enable it by url rewrite so it is served from the bucket  
+```sh
+#this file is provided by acloudguru
+aws s3 cp s3://acloudguru/htaccess /var/www/html/  
+```
+
+* Ignore everything and change his url with our own cloudfront ur
+
+#### [Optional] Migration An Old Site With All-In-One Migration  
+
+* Install the All-In-One-Migration plugin in the dashboard  
+* You might need to download the .wpress backup file through the command line.  I saved it in my S3 bucket and copy it to my folder  
+* Make sure you have enough memory!  usually t2.micro are not enough for live site migration  
+
+#### Setting Up CloudFront  
+
+```sh
+# first, copy up the files in the cloud to bucket 3  
+aws s3 cp /var/www/html/wp-content/uploads s3://yourwordpresscdnbucket --recursive
+
+# copy the code from this file
+aws s3 cp s3://acloudguru/htaccess /var/www/html 
+
+# go to the htaccess and switch the http url to cloudfront  
+```
+
+* rename htaccess to .htaccess  
+* restart apache service  
+
+```sh
+# in html/
+mv htaccess .htaccess
+service apache restart
+```
+
 

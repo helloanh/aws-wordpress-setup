@@ -147,6 +147,89 @@ clear
 
 * Go to the browser and type in the ipadress/elb.html to see the file  
 
+* Now download wordpress  
 
+```sh
+cd /var/www/  
+wget https://wordpress.org/latest.tar.gz  
+tar -xzf latest.tar.gz
+rm -rf html
+mv wordpress html
+ls
+# now we just have html and have all the wp files
+cd html
+# reprovision elb
+echo "success" > elb.html  
+# clone the config file
+cp wp-config-sample.php wp-config.php
+vim wp-config.php
+# now configure the db and username
+
+```
+
+* Need to run thees two commands to allow WP to write to the folder:  
+
+```sh
+chown -R apache.apache html/
+chmod -R 755 html/
+```
+
+* Now set up WP in the browser, remove wp-config.php first
+```php
+#file wp-config.php
+# you can also do this using the GUI installation with the browser
+```
+* All the info is available in RDS instance if you forget  
+* Copy the RDS endpoint to the **Database Host** field  
+
+### 8. Configure Site to Recover from the lost of an EC2 Instance  
+
+* Now we can make this site highly available  
+* Go into Post, there is a default Hello World! post  
+* Test media upload my adding image to the post  
+* Now image is served from the EC2 and not CloudFront  
+
+```sh
+cd html/
+# just list the content
+aws s3 ls
+# copy the contents of my html directory into my bucket  
+aws s3 cp --recursive /var/www/html/ s3://yourbucketwordpresscode  
+# check if the files are copy by listing the bucket 
+aws s3 ls yourbucketwordpresscode 
+# test to see if this work, by rm all contents in html
+cd ..
+rm -rf html
+# now check the website on the browser, it should be dead
+# now recover by copy the content again
+aws s3 cp s3://yourbucketwordpresscode /var/www/html --recursive  
+# now it should downlaod all the files again and if you check the browser, the site should be up  
+
+```
+
+* Make it so that everytime we update our site, the contents will be updated into the aws s3 bucket.  This is done using cronjob to automate this process  
+
+```sh
+cd /etc
+ls
+# you should see a file called crontab
+# now go to crontab and edit the following at the end of the document  
+
+# every 2 mins for every hour of month of the week  
+*/2 * * * * root aws s3 sync --recursive /var/www/html/ s3://youbucketwordpresscode  
+
+```
+
+* Now restart cron service
+```sh
+service crond restart
+```
+
+* Now create a new test file called mytestfile.html in the /var/www/html  
+```sh
+echo "hello this is a test" > mytestfile.html
+```
+
+* Wait for two mins, and check the aws s3 bucket to see if the file is synced there  
 
 

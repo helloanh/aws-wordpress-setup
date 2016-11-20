@@ -256,8 +256,9 @@ aws s3 cp s3://acloudguru/htaccess /var/www/html/
 #### [Optional] Migration An Old Site With All-In-One Migration  
 
 * Install the All-In-One-Migration plugin in the dashboard  
-* You might need to download the .wpress backup file through the command line.  I saved it in my S3 bucket and copy it to my folder  
-* Make sure you have enough memory!  usually t2.micro are not enough for live site migration  
+* You might need to download the .wpress backup file through the command line.  I saved it in my S3 bucket and copy it to my folder at var/www/html/wp-content/ai1wm-backups/  
+
+* Make sure you have enough memory!  usually t2.micro are not enough for live site migration.  This crashed the site for me on first try (a reboot recovers it).  
 
 #### Setting Up CloudFront  
 
@@ -279,5 +280,4 @@ aws s3 cp s3://acloudguru/htaccess /var/www/html
 mv htaccess .htaccess
 service apache restart
 ```
-
 

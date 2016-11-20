@@ -218,7 +218,7 @@ ls
 # now go to crontab and edit the following at the end of the document  
 
 # every 2 mins for every hour of month of the week  
-*/2 * * * * root aws s3 sync --recursive /var/www/html/ s3://youbucketwordpresscode  
+*/2 * * * * root aws s3 sync  /var/www/html/ s3://youbucketwordpresscode  
 
 ```
 
@@ -242,7 +242,7 @@ echo "hello this is a test" > mytestfile.html
 * First step is to copy the current contents from the uploads folder to our media bucket:  
 
 ```sh
-aws s3 cp /var/www/thml/wp-content/uploads s3://yourwordpressmediabuckethere/ --recursive  
+aws s3 cp /var/www/thml/wp-content/uploads s3://yourwordpressmediabuckethere/  
 ```
 
 * Now enable it by url rewrite so it is served from the bucket  
@@ -268,7 +268,7 @@ aws s3 cp s3://acloudguru/htaccess /var/www/html/
 
 ```sh
 # first, copy up the files in the cloud to bucket 3  
-aws s3 cp /var/www/html/wp-content/uploads s3://yourwordpresscdnbucket --recursive
+aws s3 cp /var/www/html/wp-content/uploads s3://yourwordpresscdnbucket 
 
 # copy the code from this file
 wget https://s3-eu-west-1.amazonaws.com/acloudguru/config/htaccess
@@ -351,6 +351,31 @@ chkconfig httpd on
 
 ### 13. Autoscaling & Testing  
 
+* go to ec3 dashboard amd click on create launch configuration  
+* select the ami we created  
+* give it s3 access  
+* under **Advanced Details**  make sure to add this sccript:  
+```sh
+#!/bin/bash
+yum update -y
+aws s3 cp --recursive s3://yourwordpresscode /var/www/html/
+service crond start
+service httpd start 
+
+```
+
+* add storage  
+* use web-dmz security group  
+* launch configuration  
+* auto scaling group --> starts with 2 instances  
+* add subnets  
+* **Advanced Details**: 300 seconds, from eLB, receive traffic check  
+* Use scaling policies  
 
 
+### [Optional] Set Up Sass and Compass  
+
+Setting up [sass](http://stackoverflow.com/questions/10129235/amazon-linux-latest-ruby).  
+[More](https://forums.aws.amazon.com/message.jspa?messageID=565015).  
+[Danny Nguyen's Linux Set Up](https://gist.github.com/dannguyen/5415628).  
 

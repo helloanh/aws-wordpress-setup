@@ -73,6 +73,7 @@ We are setting the acceptable amount of down time based on the existence of the 
 
 Everything else leave as default and hit create distribution.  Now you can see the distribution is set up (might take some time for the process to be completed).  
 
+
 ### 8. EC2 Instance and WordPress Installation  
 
 * Create a new Amazon AMI Linux instance, set the S3 IAM role.  We are not going to use the Advance Details section to add the bootstrapshell script, but will do it in the terminal later.    
@@ -84,6 +85,7 @@ Everything else leave as default and hit create distribution.  Now you can see t
 
 * In RDS dashboard if you set **Multi AZ** as No, then you don't manage the connection with the endpoit url.  
 * If **Multi AZ** is Yes, use the endpoint, so if the primary zone is done, AWS will set up the failover to another zone.  
+
 ### 9. Connect EC2 Instance to Load Balancer    
 
 * Go to the load balancer you created, and add the instance.  
@@ -182,7 +184,7 @@ chmod -R 755 html/
 * All the info is available in RDS instance if you forget  
 * Copy the RDS endpoint to the **Database Host** field  
 
-### 8. Configure Site to Recover from the lost of an EC2 Instance  
+### 11. Configure Site to Recover from the lost of an EC2 Instance  
 
 * Now we can make this site highly available  
 * Go into Post, there is a default Hello World! post  

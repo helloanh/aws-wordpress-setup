@@ -23,4 +23,5 @@ For a t2.small instance with standard reserved setup, here is the price breakdow
     0.004 per hr x 24 hrs * 30 days = $8.64 per month  
     $103.68 per year  but you must purchase for three years up front  
 
+
 ![reserved_spot_instances.png](https://s17.postimg.org/bswh6rzqn/reserved_spot_instances.png)

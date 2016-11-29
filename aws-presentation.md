@@ -4,6 +4,6 @@ The purpose of this guide is to break down the logistics and price breakdown for
 
 ### Architecture Overview  
 
-[img](https://s17.postimg.org/y4asrtggv/aws_fault_torelant_arch.png) 
+![img](https://s17.postimg.org/y4asrtggv/aws_fault_torelant_arch.png) 
 
 

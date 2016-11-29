@@ -15,6 +15,7 @@ Estimate Hours to migrate preexisting communitychange.org site: 2-3
 The cost breakdown is based on Amazon's Pricing [here](https://s22.postimg.org/9eoo53psx/reserved_spot_instances.png://s17.postimg.org/bswh6rzqn/reserved_spot_instances.png).  
 
 For a t2.small instance with standard reserved setup, here is the price breakdown:  
+    
     **one year, no reserve**  
     0.018 per hr x 24 hrs x  30 days  = $12.96 per month  
     $155.22 per year  

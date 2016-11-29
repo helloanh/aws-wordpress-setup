@@ -6,4 +6,10 @@ The purpose of this guide is to break down the logistics and price breakdown for
 
 ![img](https://s17.postimg.org/y4asrtggv/aws_fault_torelant_arch.png) 
 
+Estimate Hours to Set Up AWS instance: 1  
+Estimate Hours to Set Up CloudFront and RDS: 1  
+Estimate Hours to migrate preexisting communitychange.org site: 2-3  
 
+### Cost Breakdown  
+
+![reserved_spot_instances.png](https://postimg.org/image/4ssjwr49p/)

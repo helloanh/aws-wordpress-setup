@@ -12,4 +12,4 @@ Estimate Hours to migrate preexisting communitychange.org site: 2-3
 
 ### Cost Breakdown  
 
-![reserved_spot_instances.png](https://s22.postimg.org/9eoo53psx/reserved_spot_instances.png)
+![reserved_spot_instances.png](https://s17.postimg.org/bswh6rzqn/reserved_spot_instances.png)
